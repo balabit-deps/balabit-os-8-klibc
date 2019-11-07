@@ -1,0 +1,15 @@
+Description: Disable cf-protection for the syscall stubs to fix FTBFS
+Author: Adam Conrad <adconrad@ubuntu.com>
+Last-Update: 2019-10-21
+
+--- klibc-2.0.6.orig/usr/klibc/syscalls/Kbuild
++++ klibc-2.0.6/usr/klibc/syscalls/Kbuild
+@@ -28,7 +28,7 @@ clean-files += $(KLIBCINC)/klibc/havesys
+ # All the syscall stubs
+ clean-files += *.o *.S *.c *.list *.bin
+ 
+-EXTRA_KLIBCCFLAGS := -I$(srctree)/$(src)
++EXTRA_KLIBCCFLAGS := -fcf-protection=none -I$(srctree)/$(src)
+ 
+ quiet_cmd_makelist = LIST    $@
+       cmd_makelist = echo '$(filter-out FORCE,$^)' > $@

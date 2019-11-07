@@ -1,0 +1,17 @@
+Description: Fix code dropped upstream to conform to loop.h
+Author: Adam Conrad <adconrad@ubuntu.com>
+Bug-Ubuntu: https://bugs.launchpad.net/bugs/1850184
+Forwarded: not-needed
+Last-Update: 2019-11-07
+
+--- klibc-2.0.6.orig/usr/utils/losetup.c
++++ klibc-2.0.6/usr/utils/losetup.c
+@@ -107,7 +107,7 @@ static int show_loop(char *device)
+ 	}
+ 
+ 	if (ioctl(fd, LOOP_GET_STATUS, &loopinfo) == 0) {
+-		printf ("%s: [%04x]:%ld (%s)",
++		printf ("%s: [%04lx]:%ld (%s)",
+ 			device, loopinfo.lo_device, loopinfo.lo_inode,
+ 			loopinfo.lo_name);
+ 
