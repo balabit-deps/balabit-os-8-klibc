@@ -1,3 +1,25 @@
+klibc (2.0.7-1ubuntu5.1) focal-security; urgency=medium
+
+  * SECURITY UPDATE: integer overflow in calloc
+    - debian/patches/CVE-2021-31870.patch: add overflow check
+      when performing the multiplication in usr/klibc/calloc.c. 
+    - CVE-2021-31870
+  * SECURITY UPDATE: integer overflow in cpio 
+    - debian/patches/CVE-2021-31871.patch: remove cast to unsigned
+      to avoid a possible overflow in 64 bit systems in 
+      usr/utils/cpio.c.
+    - CVE-2021-31871
+  * SECURITY UPDATE: integer overflow in read_in_new_ascii
+    - debian/patches/CVE-2021-31872.patch: ensure that c_namesize
+      and c_filesize are smaller than LONG_MAX in usr/utils/cpio.c.
+    - CVE-2021-31872
+  * SECURITY UPDATE: integer overflow in malloc
+    - debian/patches/CVE-2021-31873.patch: ensure that size is smaller
+      than PTRDIFF_MAX in usr/klibc/malloc.c.
+    - CVE-2021-31873
+
+ -- David Fernandez Gonzalez <david.fernandezgonzalez@canonical.com>  Wed, 13 Apr 2022 10:40:18 +0200
+
 klibc (2.0.7-1ubuntu5) focal; urgency=medium
 
   * Apply one patch from upstream and one local to resolve type mistmatch
